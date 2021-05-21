@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Furgetech Test</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="form-fibonacci">
+      Column: <br />
+      <input type="text" name="col" id="col" /> <br />
+      <br />
+      <br />
+
+      Row: <br />
+      <input type="text" name="row" id="row" /> <br />
+      <br />
+      <br />
+
+      <p id="output"></p>
+
+      <button onClick="fibonacci(col, row)">Click me!</button>
+    </div>
+
+    <script>
+      function fibonacci(col, row) {
+        var col = document.getElementById("col").value;
+        var row = document.getElementById("row").value;
+
+        var n1 = 0;
+        var n2 = 1;
+        var nextTerm;
+        var cxr = col * row;
+
+        var result_p = [];
+
+        for (var i = 1; i <= cxr; i++) {
+          //console.log(n1);
+          result_p.push(n1);
+          nextTerm = n1 + n2;
+          n1 = n2;
+          n2 = nextTerm;
+        }
+
+        // TEMP 1
+        // n1 = 0
+        // n2 = 1
+        // nextterm = 1
+        // result_p = [0]
+        // perubahan ------------
+        // n1 = 1
+        // n2 = 1
+
+        // TEMP 2
+        // n1 = 1
+        // n2 = 1
+        // nextterm = 2
+        // result_p = [0 1]
+        // perubahan ------------
+        // n1 = 1
+        // n2 = 2
+
+        // TEMP 3
+        // n1 = 1
+        // n2 = 2
+        // nextterm = 3
+        // result_p = [0 1 1]
+        // perubahan ------------
+        // n1 = 2
+        // n2 = 3
+
+        console.log(typeof result_p);
+
+        var penyebut = col;
+
+        for (var m = 0; m < cxr; m++) {
+          if (m % penyebut == 0) {
+            // BUKAN result_p[m] += result_p[m] + <br/> KARENA ARRAY MULAI DARI 0
+            result_p[m] = "<br/>" + result_p[m];
+          } else {
+            result_p[m] = " " + result_p[m];
+          }
+        }
+
+        // TEMP 1
+        // m = 0; penyebut = 4
+        // m % penyebut = 4
+        // result_p[0] = " " + 0
+
+        // TEMP 2
+        // m = 1; penyebut = 4
+        // m % penyebut = 3
+        // result_p[0] = " " + 0 + " " + 1
+
+        // TEMP 3
+        // m = 2; penyebut = 4
+        // m % penyebut = 2
+        // result_p[0] = " " + 0 + " " + 1 + " " + 1
+
+        // TEMP 4
+        // m = 3; penyebut = 4
+        // m % penyebut = 1
+        // result_p[0] = " " + 0 + " " + 1 + " " + 1 + " " + 2
+
+        // TEMP 5
+        // m = 4; penyebut = 4
+        // m % penyebut = 0
+        // result_p[0] = " " + 0 + " " + 1 + " " + 1 + " " + 2 + <br/>
+        //                3
+
+        document.getElementById("output").innerHTML = result_p;
+      }
+    </script>
+  </body>
+</html>

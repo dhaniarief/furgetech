@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Furgetech Test</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="login">
+      <form id="form">
+        Username: <br />
+        <input
+          type="text"
+          name=""
+          id="username"
+          onkeydown="validationUsername()"
+        />
+        <br />
+        <span class="msg" id="msg-username"></span>
+        <br />
+        <br />
+
+        E-mail: <br />
+        <input type="text" name="" id="email" onkeydown="validationEmail()" />
+        <br />
+        <span class="msg" id="msg-email"></span>
+        <br />
+        <br />
+
+        Phone: <br />
+        <input type="text" name="" id="phone" onkeydown="validationPhone()" />
+        <br />
+        <span class="msg" id="msg-phone"></span>
+        <br />
+        <br />
+
+        <button class="btn-primary">Register</button>
+      </form>
+    </div>
+
+    <script>
+      function validationUsername() {
+        var form = document.getElementById("form");
+        var username = document.getElementById("username").value;
+        var msg = document.getElementById("msg-username");
+
+        var lowercase = username.toLowerCase();
+
+        if (username === lowercase) {
+          form.classList.add("valid");
+          form.classList.remove("invalid");
+          msg.innerHTML = '<span style="color: green;">Username valid.</span>';
+        } else {
+          form.classList.add("invalid");
+          form.classList.remove("valid");
+          msg.innerHTML =
+            '<span style="color: red;">Username should only lowercase letter.</span>';
+        }
+        if (username == "") {
+          form.classList.add("valid");
+          form.classList.remove("invalid");
+          msg.innerHTML = "";
+        }
+      }
+
+      function validationEmail() {
+        var form = document.getElementById("form");
+        var email = document.getElementById("email").value;
+        var msg = document.getElementById("msg-email");
+        var pattern = /^[^ ]+@+[a-z]{3,7}\.[a-z]{2,3}/;
+
+        if (email.match(pattern)) {
+          form.classList.add("valid");
+          form.classList.remove("invalid");
+          msg.innerHTML = '<span style="color: green;">Email valid.</span>';
+        } else {
+          form.classList.add("invalid");
+          form.classList.remove("valid");
+          msg.innerHTML =
+            '<span style="color: red;">E-mail should contain @ and only lowercase letter.</span>';
+        }
+        if (email == "") {
+          form.classList.add("valid");
+          form.classList.remove("invalid");
+          msg.innerHTML = "";
+        }
+      }
+
+      function validationPhone() {
+        var form = document.getElementById("form");
+        var phone = document.getElementById("phone").value;
+        var msg = document.getElementById("msg-phone");
+        var pattern = /^(?=.*[0-9])[ +0-9]+$/;
+
+        if (phone.match(pattern)) {
+          form.classList.add("valid");
+          form.classList.remove("invalid");
+          msg.innerHTML = '<span style="color: green;">Phone valid.</span>';
+        } else {
+          form.classList.add("valid");
+          form.classList.remove("invalid");
+          msg.innerHTML =
+            '<span style="color: red;">Phone should contain space, plus sign, or at least 1 integer.</span>';
+        }
+        if (phone == "") {
+          form.classList.add("valid");
+          form.classList.remove("invalid");
+          msg.innerHTML = "";
+        }
+      }
+    </script>
+  </body>
+</html>

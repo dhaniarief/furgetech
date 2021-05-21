@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Furgetech Test</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="form">
+      Amount: <br />
+      <input type="text" name="amount" id="amount" /> <br />
+      <br />
+      <br />
+
+      Given: <br />
+      <input type="text" name="given" id="given" /> <br />
+      <br />
+      <br />
+
+      <p id="output"></p>
+
+      <button onClick="change(amount, given)">Calculate!</button>
+    </div>
+
+    <script>
+      function change(amount, given) {
+        var amount = document.getElementById("amount").value;
+        var given = document.getElementById("given").value;
+
+        var res = {};
+        var pecahan = [50000, 20000, 10000, 5000, 2000, 1000, 500];
+        var change_p = given - amount;
+        var change = given - amount;
+
+        if (change < 0) {
+          console.log("Not enough money.");
+
+          var nomon = '<span style="color: red;">Not enough money.</span>';
+
+          document.getElementById("output").innerHTML = nomon;
+        } else {
+          for (var i = 0; change > 0; i++) {
+            var value = pecahan[i];
+
+            if (value <= change) {
+              res[value] = Math.floor(change / value);
+              change -= value * res[value];
+            }
+          }
+
+          // Output
+          var txt = "Change: " + change_p + "<br/><br/>";
+
+          for (var x in res) {
+            txt += "- " + res[x] + " pecahan " + x + "<br/><br/>";
+          }
+
+          document.getElementById("output").innerHTML = txt;
+        }
+        return console.log(res);
+      }
+    </script>
+  </body>
+</html>
